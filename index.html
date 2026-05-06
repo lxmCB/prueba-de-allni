@@ -3,295 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Allin | Consciencia Frutal</title>
+    <title>Floriel Chocolatería | Arte en Chocolate</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Plus+Jakarta+Sans:wght@200;400;700&display=swap');
-
         :root {
-            --bg: #fcfbf7; 
-            --accent: #3d5a35; /* Verde Manifiesto */
-            --pitaya: #ff8fa3; /* Rosado vibrante */
-            --logo-morado: #c094c4; /* Morado Allin */
-            --text: #0f110d;
+            --brand-cream: #FEF9F3;
+            /* El color exacto del logo Floriel */
+            --brand-maroon: #7A0000;
+            /* Colores extraídos de los bombones */
+            --choco-lavender: #A383BD;
+            --choco-pink: #E97E9C;
+            --choco-dark: #3D2B1F;
+            --flavor-berry: #F5E1E2;
+            --flavor-mint: #E2F0E9;
+            --flavor-citrus: #F9EEDD;
+            --flavor-ocean: #E2EBF0;
+            --accent-gold: #C5A059;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            cursor: crosshair;
+            background-color: var(--brand-cream);
+            color: #333;
+            font-family: 'Lato', sans-serif;
         }
 
-        .font-serif {
-            font-family: 'Fraunces', serif;
-            letter-spacing: -0.04em;
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-script { font-family: 'Dancing Script', cursive; }
+        .text-maroon { color: var(--brand-maroon); }
+        .text-lavender { color: var(--choco-lavender); }
+        .bg-maroon { background-color: var(--brand-maroon); }
+
+        /* Estilos para productos */
+        .card-berry { background-color: var(--flavor-berry); }
+        .card-mint { background-color: var(--flavor-mint); }
+        .card-citrus { background-color: var(--flavor-citrus); }
+        .card-ocean { background-color: var(--flavor-ocean); }
+
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
         }
 
-        .liquid-text {
-            font-variation-settings: "SOFT" 100, "WONK" 1;
-            line-height: 0.8;
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 1px;
+            background: var(--brand-maroon);
+            transition: width .3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
         }
 
-        .reveal-img {
-            overflow: hidden;
-            clip-path: inset(100% 0 0 0);
-            transition: clip-path 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-            border-radius: 3rem;
-        }
-
-        .reveal-img.active {
-            clip-path: inset(0 0 0 0);
-        }
-
-        .nav-link {
-            position: relative;
-            overflow: hidden;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--pitaya);
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .product-card {
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .circle-btn {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 1.5px solid var(--accent);
+        .image-placeholder {
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            text-transform: uppercase;
-            font-size: 11px;
-            font-weight: 800;
-            color: var(--accent);
-            position: relative;
-            background: transparent;
+            aspect-ratio: 1/1;
+            border-radius: 12px;
+            text-align: center;
+            padding: 1.5rem;
+            font-style: italic;
+            font-size: 0.8rem;
+            border: 1px dashed rgba(0,0,0,0.05);
         }
 
-        .circle-btn:hover {
-            background: var(--accent);
-            color: var(--pitaya);
-            transform: scale(1.1) rotate(5deg);
+        .floating-accent {
+            animation: float 6s ease-in-out infinite;
         }
 
-        .marquee-container {
-            background-color: var(--accent);
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-            animation: marquee 30s linear infinite;
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
     <!-- Navegación -->
-    <nav class="fixed w-full z-50 px-8 py-8 bg-gradient-to-b from-[var(--bg)]/90 to-transparent backdrop-blur-sm">
-        <div class="max-w-[1800px] mx-auto flex justify-between items-center">
-            <div class="font-serif text-5xl font-black tracking-tighter italic text-[var(--logo-morado)] hover:scale-105 transition-transform cursor-pointer drop-shadow-sm">Allin.</div>
-            
-            <div class="hidden md:flex space-x-12 text-[10px] uppercase font-bold tracking-[0.4em]">
-                <a href="#shop" class="nav-link">Catálogo</a>
-                <a href="#about" class="nav-link">Filosofía</a>
-                <a href="#contact" class="nav-link">Contacto</a>
-            </div>
-            <div class="text-[10px] font-bold uppercase tracking-widest border-b border-black/20 pb-1 cursor-pointer hover:text-[var(--pitaya)] transition-all">
-                Bag (0)
-            </div>
+    <nav class="sticky top-0 z-50 bg-[#FEF9F3]/80 backdrop-blur-md px-6 py-4 flex justify-between items-center border-b border-gray-100">
+        <div class="flex flex-col">
+            <span class="text-3xl font-serif leading-none font-bold text-maroon">Floriel</span>
+            <span class="text-sm font-script -mt-1 ml-4 text-maroon">chocolateria</span>
+        </div>
+        
+        <div class="hidden md:flex space-x-8 items-center font-medium uppercase tracking-widest text-[10px] text-gray-500">
+            <a href="#inicio" class="nav-link hover:text-maroon text-maroon font-bold">Inicio</a>
+            <a href="#coleccion" class="nav-link hover:text-maroon">Catálogo</a>
+            <a href="#sabores" class="nav-link hover:text-maroon">Sabores</a>
+            <a href="https://www.instagram.com/floriel.chocolateria/" target="_blank" class="nav-link hover:text-maroon flex items-center gap-1">
+                Redes
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+            </a>
+        </div>
+
+        <div class="flex items-center space-x-5">
+            <button class="text-gray-400 hover:text-maroon transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+            <button class="relative text-gray-400 hover:text-maroon transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <span id="cart-dot" class="absolute -top-1 -right-1 bg-maroon text-white text-[8px] rounded-full w-3.5 h-3.5 flex items-center justify-center opacity-0 transition-opacity">0</span>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section: Marco ajustado para evitar choque con blur -->
-    <section class="min-h-screen flex flex-col justify-center px-8 pt-20 relative overflow-hidden">
-        <div class="max-w-[1800px] mx-auto w-full grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-            
-            <!-- Izquierda: Bloque de Texto -->
-            <div class="z-10 order-2 md:order-1 flex flex-col items-start py-10">
-                <div class="flex items-center gap-4 mb-8 opacity-40">
-                    <span class="w-12 h-[1px] bg-black"></span>
-                    <span class="text-[9px] uppercase font-bold tracking-[0.4em]">Essential Nutrition</span>
-                </div>
-                <h1 class="font-serif text-[clamp(4.5rem,11vw,13rem)] font-black liquid-text animate__animated animate__fadeIn">
-                    PURA <br> 
-                    <span class="italic text-[var(--pitaya)]">FRUTA</span>
+    <!-- Hero Section -->
+    <header id="inicio" class="relative min-h-[90vh] flex items-center pt-10">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center z-10">
+            <div class="order-2 md:order-1">
+                <!-- Estilo actualizado a 'opaco' sin fondo, igual que las etiquetas del catálogo -->
+                <span class="block text-[10px] text-gray-400 uppercase tracking-[0.3em] mb-4 font-bold">El regalo perfecto totalmente personalizado</span>
+                <h1 class="text-5xl md:text-7xl font-serif leading-tight mb-6 text-lavender">
+                    Explora un mundo de colores y cacao
                 </h1>
-                <div class="mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-12">
-                    <p class="text-sm md:text-lg max-w-sm leading-relaxed opacity-60 font-medium italic">
-                        Elevamos la fruta peruana a su máxima expresión estética. Nutrición diseñada para estimular tus sentidos.
-                    </p>
-                    <a href="#shop" class="circle-btn shrink-0 shadow-sm">
-                        Shop Now
+                <p class="text-lg text-gray-500 max-w-md mb-8 leading-relaxed">
+                    Nuestra colección artesanal combina los mejores granos del mundo con pigmentos naturales y diseños inspirados en el arte.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://www.instagram.com/floriel.chocolateria/" target="_blank" class="btn-gold px-10 py-4 rounded-xl font-bold uppercase tracking-widest text-[11px] flex items-center gap-2">
+                        Haz tu pedido por Instagram
                     </a>
                 </div>
             </div>
-            
-            <!-- Derecha: Marco de imagen achicado y con margen superior -->
-            <div class="relative order-1 md:order-2 flex justify-center lg:justify-end">
-                <div class="reveal-img aspect-[4/4.2] w-full max-w-[480px] bg-[var(--accent)] relative group shadow-[40px_40px_80px_rgba(0,0,0,0.05)] mt-10" id="hero-img">
-                    <div class="absolute inset-0 flex items-center justify-center text-white/10 italic text-sm text-center p-12">
-                        [Imagen de Estética Natural Allin]
-                    </div>
-                </div>
-                <!-- Sticker -->
-                <div class="absolute top-4 -right-4 w-32 h-32 bg-[var(--pitaya)] rounded-full flex items-center justify-center text-center p-4 border border-[var(--accent)] rotate-12 animate__animated animate__zoomIn">
-                    <span class="text-[var(--accent)] font-black text-[10px] uppercase leading-tight">100% <br> Natural <br> Flow</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Marquee -->
-    <div class="marquee-container py-12 overflow-hidden">
-        <div class="flex whitespace-nowrap animate-marquee font-serif italic text-5xl text-[var(--pitaya)]">
-            <span class="mx-12">Allin Life</span>
-            <span class="mx-12 opacity-30 text-white">✦</span>
-            <span class="mx-12 text-white uppercase font-sans font-bold tracking-tighter">Nutrición de Diseño</span>
-            <span class="mx-12 opacity-30 text-white">✦</span>
-            <span class="mx-12">Pure Peruvian Fruit</span>
-            <span class="mx-12 opacity-30 text-white">✦</span>
-        </div>
-    </div>
-
-    <!-- Shop Section -->
-    <section id="shop" class="py-32">
-        <div class="px-8 mb-20 flex justify-between items-end max-w-[1800px] mx-auto">
-            <h2 class="font-serif text-6xl md:text-[9rem] font-black italic tracking-tighter">Colección</h2>
-            <div class="text-[10px] uppercase font-bold tracking-[0.5em] opacity-30 italic">Explore —&gt;</div>
-        </div>
-
-        <div class="flex overflow-x-auto space-x-12 px-8 no-scrollbar snap-x cursor-grab active:cursor-grabbing">
-            <div class="min-w-[280px] md:min-w-[450px] snap-center product-card group">
-                <div class="aspect-square bg-[var(--accent)] mb-8 flex items-center justify-center relative overflow-hidden rounded-[2.5rem] group-hover:scale-[0.98] transition-transform">
-                    <div class="absolute inset-0 bg-[var(--pitaya)]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                        <button class="bg-white text-[var(--accent)] px-10 py-4 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] shadow-2xl">Añadir</button>
-                    </div>
-                    <span class="text-white/20 italic text-sm p-4 text-center opacity-40 italic">[Allin Juice]</span>
-                </div>
-                <div class="flex justify-between font-serif text-3xl px-1">
-                    <span class="tracking-tighter">Pitaya Glow</span>
-                    <span class="opacity-20 italic">S/ 18</span>
-                </div>
-                <p class="px-1 text-[9px] uppercase font-bold tracking-[0.4em] text-[var(--accent)] mt-3 italic">Essential Juice</p>
-            </div>
-
-            <div class="min-w-[280px] md:min-w-[450px] snap-center product-card group">
-                <div class="aspect-square bg-[#f2f2f2] mb-8 flex items-center justify-center relative overflow-hidden rounded-[2.5rem] border border-black/5 group-hover:scale-[0.98] transition-transform">
-                    <div class="absolute inset-0 bg-[var(--accent)]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                        <button class="bg-[var(--pitaya)] text-white px-10 py-4 rounded-full text-[10px] font-bold uppercase tracking-[0.3em]">Añadir</button>
-                    </div>
-                    <span class="text-black/10 italic text-sm p-4 text-center opacity-40 italic">[Allin Cookies]</span>
-                </div>
-                <div class="flex justify-between font-serif text-3xl px-1">
-                    <span class="tracking-tighter">Lucuma Bites</span>
-                    <span class="opacity-20 italic">S/ 14</span>
-                </div>
-                <p class="px-1 text-[9px] uppercase font-bold tracking-[0.4em] text-[var(--accent)] mt-3 italic">Organic Snack</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CIERRE UNIFICADO Y COMPACTO -->
-    <section id="about" class="pt-20 pb-6 bg-[var(--accent)] text-white px-8 relative overflow-hidden">
-        <div class="max-w-[1800px] mx-auto relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-start mb-12">
-                <h2 class="font-serif text-[clamp(4.5rem,8vw,10rem)] font-black leading-[0.85] tracking-tighter animate__animated animate__fadeInLeft">
-                    LA <br> TIERRA <br> <span class="text-[var(--pitaya)]">HABLA</span>.
-                </h2>
+            <div class="order-1 md:order-2 relative">
+                <div class="floating-accent absolute -top-10 -right-10 w-32 h-32 bg-flavor-ocean rounded-full blur-3xl opacity-50"></div>
+                <div class="floating-accent absolute -bottom-10 -left-10 w-40 h-40 bg-flavor-berry rounded-full blur-3xl opacity-50" style="animation-delay: 2s;"></div>
                 
-                <div class="flex flex-col md:flex-row justify-between gap-12 md:pt-8">
-                    <p class="text-xl md:text-2xl font-light leading-[1.2] opacity-80 max-w-[300px] italic">
-                        Nutrición sensorial. Elevamos tu energía con diseño.
-                    </p>
-                    
-                    <div id="contact" class="flex flex-col gap-6 text-[10px] font-bold uppercase tracking-[0.4em]">
-                        <div class="space-y-2">
-                            <p class="text-[var(--pitaya)] opacity-60">Hola</p>
-                            <a href="mailto:hola@allin.pe" class="block hover:text-[var(--pitaya)] transition-colors lowercase font-serif text-lg tracking-tight">hola@allin.pe</a>
-                        </div>
-                        <div class="space-y-2">
-                            <p class="text-[var(--pitaya)] opacity-60">Vibra</p>
-                            <div class="flex gap-8 text-[11px] font-black lowercase italic">
-                                <a href="#" class="hover:text-[var(--pitaya)] transition-all border-b border-white/20 pb-1">Instagram</a>
-                                <a href="#" class="hover:text-[var(--pitaya)] transition-all border-b border-white/20 pb-1">TikTok</a>
-                            </div>
+                <div class="bg-white p-4 rounded-[40px] shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700">
+                    <div class="image-placeholder h-[450px] w-full rounded-[30px] bg-white overflow-hidden flex flex-col gap-2">
+                        <div class="text-maroon font-serif text-xl mb-4 italic px-8">[Imagen: Bombones Lavanda, Corazones Rosas y Lingotes de Oro]</div>
+                        <div class="grid grid-cols-2 gap-2 w-full px-8">
+                            <div class="h-20 rounded-lg bg-flavor-berry"></div>
+                            <div class="h-20 rounded-lg bg-flavor-ocean"></div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </header>
 
-            <!-- BARRA FINAL ULTRA COMPACTA -->
-            <div class="pt-4 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="font-serif text-[clamp(4rem,7vw,9rem)] font-black italic tracking-tighter text-[var(--logo-morado)] leading-none mb-[-10px]">
-                    Allin.
+    <!-- Galería de Productos -->
+    <section id="coleccion" class="py-24 bg-white">
+        <div class="container mx-auto px-6 mb-16">
+            <h2 class="text-maroon font-bold uppercase tracking-[0.3em] text-[10px] mb-4">Nuestra Paleta Artística</h2>
+            <h3 class="text-4xl font-serif">Joyas de Chocolate</h3>
+        </div>
+
+        <div class="container mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Producto 1 -->
+            <div class="group cursor-pointer">
+                <div class="card-berry p-8 rounded-[32px] mb-6 transition-all group-hover:-translate-y-2">
+                    <div class="image-placeholder bg-white/40 border-none shadow-sm">
+                        [Bombón Corazón Rosa - Cheesecake de Fresa]
+                    </div>
                 </div>
-                <div class="flex flex-col items-center md:items-end gap-1">
-                    <div class="font-serif italic text-2xl opacity-95 text-[var(--pitaya)] tracking-tighter">Beber es un arte.</div>
-                    <p class="text-[7px] font-bold uppercase tracking-[0.5em] opacity-30 italic">© 2026 Allin Peru — Lifestyle Orgánico</p>
+                <div class="px-2">
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">Colección Amor</span>
+                    <h4 class="text-xl font-serif mt-1">Corazón Velvet</h4>
+                    <p class="text-accent-gold font-bold mt-2">$4.50</p>
+                </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="group cursor-pointer">
+                <div class="p-8 rounded-[32px] mb-6 transition-all group-hover:-translate-y-2" style="background-color: #F0E6F7;">
+                    <div class="image-placeholder bg-white/40 border-none shadow-sm">
+                        [Bombón Lavanda/Violeta - Maracuyá]
+                    </div>
+                </div>
+                <div class="px-2">
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">Colección Galaxia</span>
+                    <h4 class="text-xl font-serif mt-1">Sueño de Lavanda</h4>
+                    <p class="text-accent-gold font-bold mt-2">$4.50</p>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="group cursor-pointer">
+                <div class="p-8 rounded-[32px] mb-6 transition-all group-hover:-translate-y-2" style="background-color: #E5E1DE;">
+                    <div class="image-placeholder bg-white/40 border-none shadow-sm">
+                        [Bombón Cuadrado - Cacao 70% con Oro]
+                    </div>
+                </div>
+                <div class="px-2">
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">Colección Clásica</span>
+                    <h4 class="text-xl font-serif mt-1">Lingote de Oro</h4>
+                    <p class="text-accent-gold font-bold mt-2">$5.00</p>
+                </div>
+            </div>
+
+            <!-- Producto 4 -->
+            <div class="group cursor-pointer">
+                <div class="card-citrus p-8 rounded-[32px] mb-6 transition-all group-hover:-translate-y-2">
+                    <div class="image-placeholder bg-white/40 border-none shadow-sm">
+                        [Bombón Blanco Mármol - Frutos Rojos]
+                    </div>
+                </div>
+                <div class="px-2">
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">Colección Mármol</span>
+                    <h4 class="text-xl font-serif mt-1">Pasión Blanca</h4>
+                    <p class="text-accent-gold font-bold mt-2">$4.80</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Pie de Página Sincronizado con el Logo -->
+    <footer id="contacto" class="bg-maroon text-white py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
+                <div class="md:col-span-1">
+                    <div class="flex flex-col mb-8">
+                        <span class="text-3xl font-serif leading-none font-bold text-white">Floriel</span>
+                        <span class="text-sm font-script -mt-1 ml-4 text-white/80">chocolateria</span>
+                    </div>
+                    <p class="text-sm leading-relaxed max-w-xs text-white/70">Arte comestible diseñado para sorprender. Personalizamos cada detalle para tus momentos más especiales.</p>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold text-xs uppercase tracking-widest mb-6">Nuestra Tienda Online</h5>
+                    <ul class="space-y-4 text-sm text-white/60">
+                        <li><a href="https://www.instagram.com/floriel.chocolateria/" target="_blank" class="hover:text-white transition-colors">Hacer un pedido</a></li>
+                        <li><a href="https://www.instagram.com/floriel.chocolateria/" target="_blank" class="hover:text-white transition-colors">Ver catálogo en Redes</a></li>
+                        <li><a href="mailto:hola@floriel.com" class="hover:text-white transition-colors">hola@floriel.com</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold text-xs uppercase tracking-widest mb-6">Conéctate</h5>
+                    <div class="flex flex-col space-y-4 text-sm">
+                        <a href="https://www.instagram.com/floriel.chocolateria/" target="_blank" class="text-white hover:text-white/80 transition-colors flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                            @floriel.chocolateria
+                        </a>
+                        <p class="text-[10px] text-white/40 italic mt-4 text-balance">Venta exclusiva online. Realizamos envíos personalizados.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-widest text-white/30">
+                <p>&copy; 2026 Floriel Artesanal. Hecho con amor.</p>
+                <div class="flex space-x-8">
+                    <a href="https://www.instagram.com/floriel.chocolateria/" target="_blank" class="hover:text-white transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-white transition-colors">TikTok</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const heroImg = document.getElementById('hero-img');
-                if(heroImg) heroImg.classList.add('active');
-            }, 300);
-        });
-
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
-                    entry.target.style.opacity = 1;
+        // Animación de scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 }
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.product-card, #about h2, #about p, #contact div').forEach(el => {
-            el.style.opacity = 0;
-            observer.observe(el);
         });
 
-        const slider = document.querySelector('.no-scrollbar');
-        if (slider) {
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            slider.addEventListener('mousedown', (e) => {
-                isDown = true;
-                startX = e.pageX - slider.offsetLeft;
-                scrollLeft = slider.scrollLeft;
+        // Carrito simulado
+        let cartCount = 0;
+        const cartDot = document.getElementById('cart-dot');
+        document.querySelectorAll('.group').forEach(item => {
+            item.addEventListener('click', () => {
+                cartCount++;
+                cartDot.textContent = cartCount;
+                cartDot.classList.remove('opacity-0');
+                cartDot.classList.add('scale-125');
+                setTimeout(() => cartDot.classList.remove('scale-125'), 200);
             });
-            slider.addEventListener('mouseleave', () => { isDown = false; });
-            slider.addEventListener('mouseup', () => { isDown = false; });
-            slider.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - slider.offsetLeft;
-                const walk = (x - startX) * 2.5;
-                slider.scrollLeft = scrollLeft - walk;
-            });
-        }
+        });
     </script>
 </body>
 </html>
